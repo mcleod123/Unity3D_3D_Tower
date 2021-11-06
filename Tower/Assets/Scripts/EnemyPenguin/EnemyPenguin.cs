@@ -8,7 +8,7 @@ public class EnemyPenguin : Enemies
     [SerializeField] private GameObject _enemyPenguineBody;
 
     //private int EnemyPenguineDeathCost = SettingsController.EnemyDeathCost;
-    private int EnemyPenguineDeathCost = 80;
+    private int EnemyPenguineDeathCost = 50;
     private GameObject _forTrashContainer;
 
     private Transform waypoints;
@@ -46,6 +46,12 @@ public class EnemyPenguin : Enemies
             NextWaypoint();
         }
 
+
+        // самоуничтожение, если игра остановилась!
+        if (GameController.Instance.AreGameIsStarting() == false)
+        {
+            Destroy(gameObject);
+        }
 
     }
 

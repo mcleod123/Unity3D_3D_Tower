@@ -14,6 +14,18 @@ public class GameIsStarted
 
 }
 
+public class GameIsStoped
+{
+
+}
+
+
+public class LifeIsEmpty
+{
+
+}
+
+
 
 public class EnemyDeathEventData
 {

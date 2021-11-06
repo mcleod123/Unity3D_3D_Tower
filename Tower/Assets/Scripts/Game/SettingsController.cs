@@ -10,8 +10,10 @@ public class SettingsController : MonoBehaviour
 
 
     // Game
-    public const int StartCoinsVale = 100;
-    public const int CountGamersLifes = 3;
+    public const int StartCoinsValeStartValue = 100;
+    public const int CountGamersLifesStartValue = 3;
+    public static int StartCoinsVale = StartCoinsValeStartValue;
+    public static int CountGamersLifes = CountGamersLifesStartValue;
 
 
 
@@ -35,13 +37,15 @@ public class SettingsController : MonoBehaviour
 
 
     // 3). Enemy
+    public const float EnemyMovingSpeedStartValue = 1f;
+    public const float SpawnEnemyItemsIntervalStartValue = 2f;
     public const int EnemyDeathCost = 20;
     public const int EnemyMaxLife = 120;
-    public static float EnemyMovingSpeed = 1f;
+    public static float EnemyMovingSpeed = EnemyMovingSpeedStartValue;
     public const string EnemyWayPointsGroup = "WayPoints";
     public const float EnemyDieEffectIntervalDissapear = 0.5f;
-    public static float SpawnEnemyItemsInterval = 2f;
- 
+    public static float SpawnEnemyItemsInterval = SpawnEnemyItemsIntervalStartValue;
+
 
 
 

@@ -89,7 +89,7 @@ public class TowerPlace : MonoBehaviour
 
             // удалим клетку
             gameObject.SetActive(false);
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
     }
 

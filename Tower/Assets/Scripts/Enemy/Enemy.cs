@@ -64,6 +64,15 @@ public class Enemy : Enemies
         }
 
 
+
+        // самоуничтожение, если игра остановилась!
+        if (GameController.Instance.AreGameIsStarting() == false)
+        {
+            Destroy(gameObject);
+        }
+
+
+
     }
 
 

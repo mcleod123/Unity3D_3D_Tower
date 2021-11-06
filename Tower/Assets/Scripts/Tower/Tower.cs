@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+
+    [SerializeField] private GameObject _towerPlace; 
+
     public GameObject bullet;
 
     Enemies enemy;
@@ -68,6 +71,16 @@ public class Tower : MonoBehaviour
                 enemy = null;
             }
         }
+
+
+        // самоуничтожение, если игра остановилась!
+        if (GameController.Instance.AreGameIsStarting() == false)
+        {
+            Instantiate(_towerPlace, gameObject.transform);
+            Destroy(gameObject);
+        }
+
+
     }
 
     private void FindEnemy()

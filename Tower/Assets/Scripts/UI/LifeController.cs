@@ -7,6 +7,7 @@ public class LifeController : MonoBehaviour
 {
 
     [SerializeField] private GameObject _lifesCounter;
+    [SerializeField] private GameObject _lifeChangeEffect;
 
     private int _gamerLives = SettingsController.CountGamersLifes;
     private Text _lifesCounterText;
@@ -41,11 +42,34 @@ public class LifeController : MonoBehaviour
     {
         _gamerLives -= 1;
         SetGamersLifesTextValue();
+
+        if (_gamerLives == 0)
+        {
+            Debug.Log("ЖИЗНИ БОЛЬШЕ НЕТ");
+
+            // LifeIsEmpty
+            GameController.Instance.StopGame();
+
+
+            // событие старта игры
+            var eventLifeIsEmptyData = new LifeIsEmpty() { };
+            EventAggregator.Post(this, eventLifeIsEmptyData);
+        }
+
     }
+
+    private void SetCoinsChangeEffect()
+    {
+        var lifefChangeEffect = Instantiate(_lifeChangeEffect);
+        Destroy(lifefChangeEffect, 0.5f);
+    }
+
+
 
     private void SetGamersLifesTextValue()
     {
         _lifesCounterText.text = _gamerLives.ToString();
+        SetCoinsChangeEffect();
     }
 
 

@@ -8,10 +8,10 @@ public class SpawnerPenguins : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefabItem;
 
     // задержка перед рождением объекта
-    private float spawnTime = 5f;
+    private float spawnTime = 25f;
 
     // задержка перед началом волны
-    private float _spawnEnemyItemsInterval = 5f;
+    private float _spawnEnemyItemsInterval = 25f;
 
     private string _spawnObjectName = "SpawnerPenguins";
 

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CoinsController : MonoBehaviour
 {
     [SerializeField] private GameObject _coinsCounter;
+    [SerializeField] private GameObject _coinfChangeEffect;
 
     private static CoinsController _intance;
     public static CoinsController Instance;
@@ -31,7 +32,7 @@ public class CoinsController : MonoBehaviour
     {
         if( buildingCost <= _currentCoinsValue )
         {
-            Debug.Log("Есть деньги, башню строим!");
+            //Debug.Log("Есть деньги, башню строим!");
             return true;
         } else
         {
@@ -43,6 +44,14 @@ public class CoinsController : MonoBehaviour
     private void SetCurrentCoinsValue()
     {
         _coinsCounterText.text = _currentCoinsValue.ToString();
+        SetCoinsChangeEffect();
+    }
+
+
+    private void SetCoinsChangeEffect()
+    {
+        var coinfChangeEffect = Instantiate(_coinfChangeEffect);
+        Destroy(coinfChangeEffect, 0.5f);
     }
 
 

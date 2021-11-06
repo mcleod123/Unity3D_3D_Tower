@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
+    [SerializeField] private GameObject _towerPlacesGroup;
+
     private static GameController _intance;
     public static GameController Instance;
 
@@ -56,6 +58,48 @@ public class GameController : MonoBehaviour
         // нарастание нашествия врагов уровня1 их скорость и уменьшение интервала появления
         StartCoroutine(EnemyMovingFaster());
     }
+
+
+    public void StopGame()
+    {
+        Debug.Log("Остановите игру!");
+
+        GameIsStarting = false;
+
+        // событие стоп игры
+        var eventData = new GameIsStoped() { };
+        EventAggregator.Post(this, eventData);
+
+        // сброс параметров
+        SettingsController.EnemyMovingSpeed = SettingsController.EnemyMovingSpeedStartValue;
+        SettingsController.SpawnEnemyItemsInterval = SettingsController.SpawnEnemyItemsIntervalStartValue;
+
+        SettingsController.StartCoinsVale = SettingsController.StartCoinsValeStartValue;
+        SettingsController.CountGamersLifes = SettingsController.CountGamersLifesStartValue;
+
+
+        // вернем на место места под башни
+        ReActivateTowerPlaces();
+
+    }
+
+
+    private void ReActivateTowerPlaces()
+    {
+        Debug.Log("Это не шутка, надо вернуть как было");
+
+        // _towerPlacesGroup
+        foreach (Transform child in _towerPlacesGroup.GetComponentsInChildren<Transform>())
+        {
+            //child.gameObject.SetActive(true);
+            // child.GetComponent<GameObject>().SetActive(true);
+
+            child.gameObject.SetActive(!child.gameObject.activeSelf);
+
+            Debug.Log(child.gameObject.name);
+        }
+    }
+
 
     private IEnumerator EnemyMovingFaster()
     {
