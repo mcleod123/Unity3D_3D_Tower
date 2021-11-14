@@ -10,9 +10,9 @@ public class TowerPlace : MonoBehaviour
     CoinsController coinsController;
 
 
-    private Color _emptyColor = SettingsController.EmptyTowerPlaceColor;
-    private Color _selectionColor = SettingsController.SelectionTowerPlaceColor;
-    private Color _deleteColor = SettingsController.DeleteTowerPlaceColor;
+   // private Color _emptyColor = SettingsController.EmptyTowerPlaceColor;
+    // private Color _selectionColor = SettingsController.SelectionTowerPlaceColor;
+    // private Color _deleteColor = SettingsController.DeleteTowerPlaceColor;
 
     private int _towerBuildingCost = SettingsController.TowerBuildingCost;
 

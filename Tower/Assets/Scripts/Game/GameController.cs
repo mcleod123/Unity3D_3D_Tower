@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
-    [SerializeField] private GameObject _towerPlacesGroup;
+
+    [SerializeField] private GameObject _gameOverWindow;
 
     private static GameController _intance;
     public static GameController Instance;
@@ -78,27 +79,14 @@ public class GameController : MonoBehaviour
         SettingsController.CountGamersLifes = SettingsController.CountGamersLifesStartValue;
 
 
-        // вернем на место места под башни
-        ReActivateTowerPlaces();
+        _gameOverWindow.SetActive(true);
+
+
 
     }
 
 
-    private void ReActivateTowerPlaces()
-    {
-        Debug.Log("Это не шутка, надо вернуть как было");
 
-        // _towerPlacesGroup
-        foreach (Transform child in _towerPlacesGroup.GetComponentsInChildren<Transform>())
-        {
-            //child.gameObject.SetActive(true);
-            // child.GetComponent<GameObject>().SetActive(true);
-
-            child.gameObject.SetActive(!child.gameObject.activeSelf);
-
-            Debug.Log(child.gameObject.name);
-        }
-    }
 
 
     private IEnumerator EnemyMovingFaster()

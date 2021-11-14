@@ -11,12 +11,18 @@ public class StartingGamePanelController : MonoBehaviour
     [SerializeField] private Slider _masterVolumeSlider;
     [SerializeField] private AudioMixer _mixer;
 
+    private const string _mixerName = "MusicMasterVolume";
 
     // Start is called before the first frame update
     void Start()
     {
         _startGameButton.onClick.AddListener(StartGameButtonOnClick);
         _masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
+
+
+        // установим значение громкости
+        _mixer.SetFloat(_mixerName, UserPreferences.GetSoundVolume());
+        _masterVolumeSlider.value = UserPreferences.GetSoundVolume();
     }
 
     // Update is called once per frame
@@ -30,19 +36,15 @@ public class StartingGamePanelController : MonoBehaviour
     {
         gameObject.SetActive(false);
         GameController.Instance.StartGame();
+
+        AudioManager.PlaySFX(SFXType.StartGame);
     }
 
 
     private void OnMasterVolumeChanged(float value)
     {
-        // AudioManager.Instance.
-        // mixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
-        //_mixer.SetFloat("MasterVolume", Mathf.Log10(value) * 20);
-
-        // _mixer.FindMatchingGroups("Master").SetValue(AudioMixer.Equals(  value, 0);
-
-        _mixer.SetFloat("MusicMasterVolume", value);
-
+        _mixer.SetFloat(_mixerName, value);
+        UserPreferences.SetDefaultSoundVolume(value);
     }
 
 

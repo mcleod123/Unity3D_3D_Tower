@@ -7,37 +7,33 @@ public class GameOverPanelController : MonoBehaviour
 {
 
     [SerializeField] private Button _startGameButton;
-    [SerializeField] private GameObject _gameOverWindow;
+    [SerializeField] private GameObject _towerPlacesGroup;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        _gameOverWindow.SetActive(false);
+        // _gameOverWindow.SetActive(false);
         _startGameButton.onClick.AddListener(StartGameButtonOnClick);
     }
 
     private void StartGameButtonOnClick()
     {
-        _gameOverWindow.SetActive(false);
+        // вернем на место места под башни
+        ReActivateTowerPlaces();
         GameController.Instance.StartGame();
+
+        AudioManager.PlaySFX(SFXType.StartGame);
+
+        // --
+        gameObject.SetActive(false);
+
     }
 
 
     private void Update()
     {
-        if (GameController.Instance.AreGameIsStarting() == false)
-        {
-            Debug.Log("!!!");
-            _gameOverWindow.SetActive(true);
 
-        } 
-        else
-        {
-
-            _gameOverWindow.SetActive(false);
-
-        }
     }
 
 
@@ -58,5 +54,12 @@ public class GameOverPanelController : MonoBehaviour
 
     }
 
+    private void ReActivateTowerPlaces()
+    {
+        #pragma warning disable CS0618 // Тип или член устарел
+        // ничего страшного, зато работает как надо
+        _towerPlacesGroup.SetActiveRecursively(enabled);
+        #pragma warning restore CS0618 // Тип или член устарел
+    }
 
 }

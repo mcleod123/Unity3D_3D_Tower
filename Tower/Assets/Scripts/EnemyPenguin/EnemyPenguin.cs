@@ -105,7 +105,7 @@ public class EnemyPenguin : Enemies
             EventAggregator.Post(this, eventData);
 
             // звук - убили врага
-            AudioManager.PlaySFX(SFXType.EnemyCatDied);
+            AudioManager.PlaySFX(SFXType.EnemyPenguineDie);
 
             // _enemyCatDiedEffect
             //GameObject effectGameObjectToDestroy = Instantiate(_enemyCatDiedEffect, transform.position, transform.rotation);
