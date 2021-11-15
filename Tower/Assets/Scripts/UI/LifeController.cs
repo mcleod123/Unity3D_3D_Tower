@@ -29,12 +29,14 @@ public class LifeController : MonoBehaviour
     {
         // подписка на событие - враг дошел до Финиша
         EventAggregator.Subscribe<EnemyWasMovedToFinish>(OnEnemyEnemyWasMovedToFinishHandler);
+        EventAggregator.Subscribe<GameIsStarted>(OnGameIsStartedHandler);
     }
 
     private void OnDestroy()
     {
         // отписка оь события - враг дошел до Финиша
-        EventAggregator.Subscribe<EnemyWasMovedToFinish>(OnEnemyEnemyWasMovedToFinishHandler);
+        EventAggregator.Unsubscribe<EnemyWasMovedToFinish>(OnEnemyEnemyWasMovedToFinishHandler);
+        EventAggregator.Unsubscribe<GameIsStarted>(OnGameIsStartedHandler);
     }
 
     // Враг дошел до финиша и минус одна жизнь
@@ -43,13 +45,12 @@ public class LifeController : MonoBehaviour
         _gamerLives -= 1;
         SetGamersLifesTextValue();
 
+        AudioManager.PlaySFX(SFXType.EnemyGoToFinish);
+
         if (_gamerLives == 0)
         {
-            Debug.Log("ЖИЗНИ БОЛЬШЕ НЕТ");
-
             // LifeIsEmpty
             GameController.Instance.StopGame();
-
 
             // событие старта игры
             var eventLifeIsEmptyData = new LifeIsEmpty() { };
@@ -70,6 +71,14 @@ public class LifeController : MonoBehaviour
     {
         _lifesCounterText.text = _gamerLives.ToString();
         SetCoinsChangeEffect();
+    }
+
+
+
+    private void OnGameIsStartedHandler(object sender, GameIsStarted eventData)
+    {
+        _gamerLives = SettingsController.CountGamersLifesStartValue;
+        SetGamersLifesTextValue();
     }
 
 

@@ -7,10 +7,16 @@ public enum SFXType
     Shoot,
     TowerBuildComplete,
     EnemyCatDied,
+    EnemyCatDied2,
+    EnemyCatDied3,
+    EnemyCatDied4,
+
     EnemyJetLanding,
     MetalBulletHit,
     StartGame,
-    EnemyPenguineDie
+    EnemyPenguineDie,
+    GameOver,
+    EnemyGoToFinish
 }
 
 public enum MusicType

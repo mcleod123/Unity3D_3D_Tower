@@ -124,8 +124,21 @@ public class Enemy : Enemies
             var eventData = new EnemyDeathEventData() { Enemy = EnemyType.EnemyCat, EnemyDeathCost = EnemyDeathCost };
             EventAggregator.Post(this, eventData);
 
+
+            // ==========
             // звук - убили врага котика
-            AudioManager.PlaySFX(SFXType.EnemyCatDied);
+            System.Random rand = new System.Random();
+            var arrSfxCatDiedEffects = new[] {
+                                SFXType.EnemyCatDied,
+                                SFXType.EnemyCatDied2,
+                                SFXType.EnemyCatDied3,
+                                SFXType.EnemyCatDied4
+                                };
+            var rndSfxCatDiedEffects = arrSfxCatDiedEffects[rand.Next(arrSfxCatDiedEffects.Length)];
+
+            AudioManager.PlaySFX(rndSfxCatDiedEffects);
+            // =============
+            // =============
 
             // _enemyCatDiedEffect
             //GameObject effectGameObjectToDestroy = Instantiate(_enemyCatDiedEffect, transform.position, transform.rotation);

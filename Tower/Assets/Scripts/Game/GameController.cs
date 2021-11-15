@@ -63,22 +63,16 @@ public class GameController : MonoBehaviour
 
     public void StopGame()
     {
-        Debug.Log("Остановите игру!");
 
-        GameIsStarting = false;
 
         // событие стоп игры
         var eventData = new GameIsStoped() { };
         EventAggregator.Post(this, eventData);
 
-        // сброс параметров
-        SettingsController.EnemyMovingSpeed = SettingsController.EnemyMovingSpeedStartValue;
-        SettingsController.SpawnEnemyItemsInterval = SettingsController.SpawnEnemyItemsIntervalStartValue;
-
-        SettingsController.StartCoinsVale = SettingsController.StartCoinsValeStartValue;
-        SettingsController.CountGamersLifes = SettingsController.CountGamersLifesStartValue;
 
 
+
+        GameIsStarting = false;
         _gameOverWindow.SetActive(true);
 
 

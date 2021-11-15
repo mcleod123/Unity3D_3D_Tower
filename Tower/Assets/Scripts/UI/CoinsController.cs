@@ -64,6 +64,9 @@ public class CoinsController : MonoBehaviour
         // подписка на событие - постройка башни
         EventAggregator.Subscribe<TowerBuildingEventData>(OnTowerBuildEventHandler);
 
+        // подписка на событие - старт игры
+        EventAggregator.Subscribe<GameIsStarted>(OnGameIsStartedEventHandler);
+
 
 
         // =================================
@@ -93,6 +96,10 @@ public class CoinsController : MonoBehaviour
 
         // jотписка от событие - постройка башни
         EventAggregator.Unsubscribe<TowerBuildingEventData>(OnTowerBuildEventHandler);
+
+        // jотписка от события - старт игры
+        EventAggregator.Unsubscribe<GameIsStarted>(OnGameIsStartedEventHandler);
+
     }
 
 
@@ -110,6 +117,13 @@ public class CoinsController : MonoBehaviour
         _currentCoinsValue -= eventData.TowerBuildingCost;
         SetCurrentCoinsValue();
         // Debug.Log("Разорились на постройке башен");
+    }
+    
+
+    private void OnGameIsStartedEventHandler(object sender, GameIsStarted eventData)
+    {
+        _currentCoinsValue = SettingsController.StartCoinsValeStartValue;
+        SetCurrentCoinsValue();
     }
 
 

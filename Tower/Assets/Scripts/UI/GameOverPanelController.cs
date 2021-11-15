@@ -25,6 +25,15 @@ public class GameOverPanelController : MonoBehaviour
 
         AudioManager.PlaySFX(SFXType.StartGame);
 
+
+        // сброс параметров
+        SettingsController.EnemyMovingSpeed = SettingsController.EnemyMovingSpeedStartValue;
+        SettingsController.SpawnEnemyItemsInterval = SettingsController.SpawnEnemyItemsIntervalStartValue;
+
+        // событие старт игры
+        var eventData = new GameIsStarted() { };
+        EventAggregator.Post(this, eventData);
+
         // --
         gameObject.SetActive(false);
 
@@ -41,6 +50,9 @@ public class GameOverPanelController : MonoBehaviour
     {
         // подписка на событие - стоп игры
         EventAggregator.Subscribe<LifeIsEmpty>(OnLifeIsEmptyEventHandler);
+
+        // Game Over Sound
+        AudioManager.PlaySFX(SFXType.GameOver);
     }
 
     private void OnDestroy()

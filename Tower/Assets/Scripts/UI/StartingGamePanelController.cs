@@ -34,10 +34,12 @@ public class StartingGamePanelController : MonoBehaviour
 
     private void StartGameButtonOnClick()
     {
-        gameObject.SetActive(false);
-        GameController.Instance.StartGame();
 
+        GameController.Instance.StartGame();
         AudioManager.PlaySFX(SFXType.StartGame);
+
+        gameObject.SetActive(false);
+
     }
 
 
