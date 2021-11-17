@@ -7,8 +7,7 @@ public class EnemyPenguin : Enemies
     [SerializeField] private GameObject _enemyPenguineDiedEffect;
     [SerializeField] private GameObject _enemyPenguineBody;
 
-    //private int EnemyPenguineDeathCost = SettingsController.EnemyDeathCost;
-    private int EnemyPenguineDeathCost = 50;
+    private int EnemyPenguineDeathCost = SettingsController.EnemyPenguineDeathCost;
     private GameObject _forTrashContainer;
 
     private Transform waypoints;
@@ -16,8 +15,8 @@ public class EnemyPenguin : Enemies
     private Quaternion _quaternionRotation;
     private int waypointIndex = -1;
     private float life;
-    private float speed = 0.3f;
-    private float MaxLife = 500f;
+    private float speed = SettingsController.PenguineSpeed;
+    private float MaxLife = SettingsController.EnemyPenguineMaxLife;
 
     private float nullLife = 0;
     private int freezeCoordY = 0;
@@ -26,7 +25,6 @@ public class EnemyPenguin : Enemies
 
     void Start()
     {
-        // waypoints = GameObject.Find("WayPoints").transform;
         waypoints = GameObject.Find(_wayPointsGroup).transform;
         _forTrashContainer = GameObject.Find(SettingsController.TrashContainerObjectName);
         NextWaypoint();
@@ -46,7 +44,6 @@ public class EnemyPenguin : Enemies
             NextWaypoint();
         }
 
-
         // самоуничтожение, если игра остановилась!
         if (GameController.Instance.AreGameIsStarting() == false)
         {
@@ -54,13 +51,6 @@ public class EnemyPenguin : Enemies
         }
 
     }
-
-
-
-
-
-
-
 
 
     void NextWaypoint()
@@ -107,17 +97,13 @@ public class EnemyPenguin : Enemies
             // звук - убили врага
             AudioManager.PlaySFX(SFXType.EnemyPenguineDie);
 
-            // _enemyCatDiedEffect
-            //GameObject effectGameObjectToDestroy = Instantiate(_enemyCatDiedEffect, transform.position, transform.rotation);
             GameObject effectGameObjectToDestroy = Instantiate(_enemyPenguineDiedEffect, transform.position, transform.rotation, _forTrashContainer.transform);
-            //StartCoroutine(DestroyEffectObject(effectGameObjectToDestroy));
 
             // убили обьект
             Destroy(gameObject);
 
             // удаляем эффект уничтожения
             Destroy(effectGameObjectToDestroy, _enemyDieEffectIntervalDissaopear);
-
 
         }
     }

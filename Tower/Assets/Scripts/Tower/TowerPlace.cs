@@ -9,11 +9,6 @@ public class TowerPlace : MonoBehaviour
     public GameObject tower;
     CoinsController coinsController;
 
-
-   // private Color _emptyColor = SettingsController.EmptyTowerPlaceColor;
-    // private Color _selectionColor = SettingsController.SelectionTowerPlaceColor;
-    // private Color _deleteColor = SettingsController.DeleteTowerPlaceColor;
-
     private int _towerBuildingCost = SettingsController.TowerBuildingCost;
 
     private void Awake()
@@ -30,29 +25,6 @@ public class TowerPlace : MonoBehaviour
         }
  
     }
-
-    public void OnMouseUp()
-    {
-        
-    }
-
-    public void OnMouseEnter()
-    {
-        if(isCanBuild)
-        {
-            // GetComponent<Renderer>().material.color = _selectionColor;
-        }
-    }
-
-    public void OnMouseExit()
-    {
-        if(isCanBuild)
-        {
-            //GetComponent<Renderer>().material.color = _emptyColor;
-        }
-    }
-
-
 
 
     public void BuildTheTower()
@@ -78,7 +50,6 @@ public class TowerPlace : MonoBehaviour
         {
             isCanBuild = false;
             Instantiate(tower, transform.position, transform.rotation);
-            //GetComponent<Renderer>().material.color = _emptyColor;
 
             // событие постройки башни
             var eventData = new TowerBuildingEventData() { TowerTypeData = TowerType.Duck, TowerBuildingCost = _towerBuildingCost };
@@ -87,13 +58,26 @@ public class TowerPlace : MonoBehaviour
             // звук постройки башни
             AudioManager.PlaySFX(SFXType.TowerBuildComplete);
 
-            // удалим клетку
+            // скроем клетку
             gameObject.SetActive(false);
-            // Destroy(gameObject);
+
         }
     }
 
+    public void OnMouseUp()
+    {
 
+    }
+
+    public void OnMouseEnter()
+    {
+
+    }
+
+    public void OnMouseExit()
+    {
+
+    }
 
 
 }

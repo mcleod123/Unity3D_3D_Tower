@@ -14,17 +14,15 @@ public class GameController : MonoBehaviour
     private bool GameIsStarting = false; 
 
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+
+        // Выход из игры по нажатию кнопки Escape или ее аналога на андроиде
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            QuitGame();
+        }
+
     }
 
     private void Awake()
@@ -60,7 +58,6 @@ public class GameController : MonoBehaviour
         StartCoroutine(EnemyMovingFaster());
     }
 
-
     public void StopGame()
     {
 
@@ -79,10 +76,6 @@ public class GameController : MonoBehaviour
 
     }
 
-
-
-
-
     private IEnumerator EnemyMovingFaster()
     {
         while (SettingsController.EnemyMovingSpeed <= 5f)
@@ -93,6 +86,14 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void QuitGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
 
 
 

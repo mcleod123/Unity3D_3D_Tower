@@ -70,7 +70,6 @@ public class CameraShake : MonoBehaviour
 	}
 
 
-
 	private void Awake()
 	{
 		// подписка на событие - враг дошел до Финиша
@@ -88,11 +87,6 @@ public class CameraShake : MonoBehaviour
 	{
 		CameraShake.Shake(1, 1);
 	}
-
-
-
-
-
 
 
 }

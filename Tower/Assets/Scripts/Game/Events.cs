@@ -47,21 +47,6 @@ public class EnemyWasMovedToFinish
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // типы башен
 public enum TowerType
 {

@@ -16,7 +16,8 @@ public enum SFXType
     StartGame,
     EnemyPenguineDie,
     GameOver,
-    EnemyGoToFinish
+    EnemyGoToFinish,
+    TowerBuild
 }
 
 public enum MusicType

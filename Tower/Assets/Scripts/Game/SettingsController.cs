@@ -5,11 +5,11 @@ using UnityEngine;
 public class SettingsController : MonoBehaviour
 {
 
-    // Common
+    // Общее
     public const string TrashContainerObjectName = "TrashContainer";
 
 
-    // Game
+    // Игра
     public const int StartCoinsValeStartValue = 100;
     public const int CountGamersLifesStartValue = 3;
     public static int StartCoinsVale = StartCoinsValeStartValue;
@@ -17,17 +17,17 @@ public class SettingsController : MonoBehaviour
 
 
 
-    // TowerPlace
+    // Места под башню
     public static Color EmptyTowerPlaceColor = new Color(0f, 0.7f, 0f, 0.1f);
     public static Color SelectionTowerPlaceColor = new Color(0.1f, 0.8f, 0.1f, 0.5f);
     public static Color DeleteTowerPlaceColor = new Color(0.9f, 0f, 0f, 0.5f);
 
 
-    // 1) Tower
+    // Башня
     public const int TowerBuildingCost = 50;
 
 
-    // 2). Tower Bullet
+    // Пули башни
     public const float TowerBulletSpeed = 0.4f;
     public const float TowerBulletTimeLife = 1f;
     public const float TowerBulletDamage = 25f;
@@ -36,7 +36,7 @@ public class SettingsController : MonoBehaviour
 
 
 
-    // 3). Enemy
+    // Враг
     public const float EnemyMovingSpeedStartValue = 1f;
     public const float SpawnEnemyItemsIntervalStartValue = 2f;
     public const int EnemyDeathCost = 20;
@@ -47,7 +47,17 @@ public class SettingsController : MonoBehaviour
     public static float SpawnEnemyItemsInterval = SpawnEnemyItemsIntervalStartValue;
 
 
+    // Враг металлический пингвин
+    public const int EnemyPenguineDeathCost = 50;
+    public const float PenguineSpeed = 0.3f;
+    public const float EnemyPenguineMaxLife = 500f;
+    public const float EnemyPenguineSpawnTime = 25f;
+    public const float EnemyPenguineItemsInterval = 25f;
 
+
+    // Строковые значения
+    public const string PauseButtonTextOnPause = "В бой!";
+    public const string PauseButtonTextOnPlay = "Пауза";
 
 
 }

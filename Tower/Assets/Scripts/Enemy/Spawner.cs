@@ -5,8 +5,6 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 
-
-
     // кого мы спауним
     [SerializeField] private GameObject _enemyPrefabItem;
     [SerializeField] private GameObject _enemyJetPlane;
@@ -16,20 +14,15 @@ public class Spawner : MonoBehaviour
 
     // задержка перед началом волны
     private float _spawnEnemyItemsInterval = SettingsController.SpawnEnemyItemsInterval;
-
     private string _spawnObjectName = "Spawner";
-
-
 
     // Update is called once per frame
     void Update()
     {
-
         if(GameController.Instance.AreGameIsStarting() == true)
         {
             GenerateEnemies();
         }
-
     }
 
 
@@ -45,7 +38,6 @@ public class Spawner : MonoBehaviour
             _spawnEnemyItemsInterval = spawnTime;
         }
 
-        //_spawnEnemyItemsInterval = SettingsController.SpawnEnemyItemsInterval;
     }
 
 
@@ -68,20 +60,5 @@ public class Spawner : MonoBehaviour
         AudioManager.PlaySFX(SFXType.EnemyJetLanding);
     }
 
-
-    // отловить событие начала игры и тыкнуть картуину
-    // StartCoroutine(TestCoroutine());
-
-    /*
-     
-     IEnumerator TestCoroutine()
-        {
-	        while(true)
-	        {
-		        yield return null;
-		        Debug.Log(Time.deltaTime);
-	        }
-        }
-     */
 
 }

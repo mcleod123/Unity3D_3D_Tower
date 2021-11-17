@@ -17,7 +17,7 @@ public class Tower : MonoBehaviour
     private GameObject _forTrashContainer;
     private string _headTowerObjectName = "Head";
 
-    // Start is called before the first frame update
+
     void Start()
     {
         towerHead = transform.Find(_headTowerObjectName);
@@ -33,12 +33,8 @@ public class Tower : MonoBehaviour
         {
             timerShoot = TimeShoot;
 
-            // 
-            // GameObject bulletAfterShoot = Instantiate(bullet, towerHead.transform.position, towerHead.transform.rotation);
+            // пулю сразу инстантиируем в мусорном контейнере _forTrashContainer
             GameObject bulletAfterShoot = Instantiate(bullet, towerHead.transform.position, towerHead.transform.rotation, _forTrashContainer.transform);
-            // GameObject bulletAfterShoot = Instantiate(bullet, transform.position, transform.rotation, GameObject.Find(_shootObjectName).transform);
-
-
 
             Bullet b = bulletAfterShoot.GetComponent<Bullet>();
             b.Enemy = enemy;
@@ -53,15 +49,15 @@ public class Tower : MonoBehaviour
     {
         if(enemy == null)
         {
-            // find enemies
+            // поиск врага
             FindEnemy();
         }
         else
         {
-            // rotate dule
+            // вращение башни в направлении врага
             towerHead.LookAt(enemy.transform);
 
-            // shoot
+            // выстрел
             Shoot();
 
             float dist = Vector3.Distance(enemy.transform.position, transform.position);
@@ -71,7 +67,6 @@ public class Tower : MonoBehaviour
                 enemy = null;
             }
         }
-
 
         // самоуничтожение, если игра остановилась!
         if (GameController.Instance.AreGameIsStarting() == false)
@@ -106,9 +101,6 @@ public class Tower : MonoBehaviour
     }
 
 
-
-
-
     void Awake()
     {
         // подписка на событие - смерть врага
@@ -122,36 +114,10 @@ public class Tower : MonoBehaviour
     }
 
 
-
-
     private void OnEnemyDeathEventHandler(object sender, EnemyDeathEventData eventData)
     {
-        // Debug.Log("Башня радуется что кого-то убила! Это: " + eventData.Enemy + " Очки: " + eventData.EnemyDeathCost );
+        // была задумка сделать анимацию радости, что когда враг убит - все башни радуются
     }
-
-
-
-
-    // --------------------------
-    public void OnMouseRightDown()
-    {
-        Debug.Log("OnMouseRightDown");
-        //GetComponent<Renderer>().material.color = _deleteColor;
-    }
-
-    public void OnMouseRightUp()
-    {
-        Debug.Log("OnMouseRightUp");
-        //GetComponent<Renderer>().material.color = _deleteColor;
-
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
-        {
-            print(hit.transform.name);
-        }
-
-    }
-
-
 
 
 

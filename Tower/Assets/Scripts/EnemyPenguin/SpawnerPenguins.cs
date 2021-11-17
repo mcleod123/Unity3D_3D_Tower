@@ -8,16 +8,15 @@ public class SpawnerPenguins : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefabItem;
 
     // задержка перед рождением объекта
-    private float spawnTime = 25f;
+    private float _spawnTime = SettingsController.EnemyPenguineSpawnTime;
 
     // задержка перед началом волны
-    private float _spawnEnemyItemsInterval = 25f;
+    private float _spawnEnemyItemsInterval = SettingsController.EnemyPenguineItemsInterval;
 
-    private string _spawnObjectName = "SpawnerPenguins";
+    private const string _spawnObjectName = "SpawnerPenguins";
 
 
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -38,10 +37,9 @@ public class SpawnerPenguins : MonoBehaviour
         if (_spawnEnemyItemsInterval <= 0)
         {
             Instantiate(_enemyPrefabItem, transform.position, transform.rotation, GameObject.Find(_spawnObjectName).transform);
-            _spawnEnemyItemsInterval = spawnTime;
+            _spawnEnemyItemsInterval = _spawnTime;
         }
 
-        //_spawnEnemyItemsInterval = SettingsController.SpawnEnemyItemsInterval;
     }
 
 
@@ -61,8 +59,6 @@ public class SpawnerPenguins : MonoBehaviour
     {
 
     }
-
-
 
 
 }

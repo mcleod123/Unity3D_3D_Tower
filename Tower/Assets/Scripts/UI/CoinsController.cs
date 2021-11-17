@@ -32,11 +32,11 @@ public class CoinsController : MonoBehaviour
     {
         if( buildingCost <= _currentCoinsValue )
         {
-            //Debug.Log("Есть деньги, башню строим!");
+            // Есть деньги, башню строим!
             return true;
         } else
         {
-            Debug.Log("На постройку башни денег нет!");
+            // На постройку башни денег нет!
             return false;
         }
     }
@@ -69,7 +69,6 @@ public class CoinsController : MonoBehaviour
 
 
 
-        // =================================
         // для использования в других класах
         if (_intance != null)
         {
@@ -83,8 +82,7 @@ public class CoinsController : MonoBehaviour
 
         _intance = this;
         Instance = this;
-        // ===============================
-        // ===============================
+
 
 
     }
@@ -94,10 +92,10 @@ public class CoinsController : MonoBehaviour
         // отписка от события - смерть врага
         EventAggregator.Unsubscribe<EnemyDeathEventData>(OnEnemyDeathEventHandler);
 
-        // jотписка от событие - постройка башни
+        // отписка от событие - постройка башни
         EventAggregator.Unsubscribe<TowerBuildingEventData>(OnTowerBuildEventHandler);
 
-        // jотписка от события - старт игры
+        // отписка от события - старт игры
         EventAggregator.Unsubscribe<GameIsStarted>(OnGameIsStartedEventHandler);
 
     }
@@ -116,7 +114,6 @@ public class CoinsController : MonoBehaviour
     {
         _currentCoinsValue -= eventData.TowerBuildingCost;
         SetCurrentCoinsValue();
-        // Debug.Log("Разорились на постройке башен");
     }
     
 

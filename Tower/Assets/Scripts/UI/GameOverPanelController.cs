@@ -13,7 +13,6 @@ public class GameOverPanelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // _gameOverWindow.SetActive(false);
         _startGameButton.onClick.AddListener(StartGameButtonOnClick);
     }
 

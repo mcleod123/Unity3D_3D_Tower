@@ -39,31 +39,13 @@ public class Enemy : Enemies
         Vector3 enemyMoveDirection = waypoint.transform.position - transform.position;
         enemyMoveDirection.y = freezeCoordY;
 
-        // ===========
-        //Quaternion enemyRotation = waypoint.transform.rotation;
-        // ===========
-
         float _speed = Time.deltaTime * speed;
         transform.Translate(enemyMoveDirection.normalized * _speed);
-        //transform.TransformDirection(enemyMoveDirection);
-
-
-
-        // ------------------------------------
-        // gameObject.transform.rotation = new Quaternion(enemyMoveDirection.x, freezeCoordY, enemyMoveDirection.z, 1);
-        // transform.rotation = Quaternion.Euler(enemyMoveDirection.x, enemyMoveDirection.x * enemyMoveDirection.y, enemyMoveDirection.z);
-        //transform.rotation = Quaternion.Euler(enemyMoveDirection.x, enemyMoveDirection.x * enemyMoveDirection.y, enemyMoveDirection.z);
-
-
-
-
 
         if (enemyMoveDirection.magnitude <= _speed)
         {
             NextWaypoint();
         }
-
-
 
         // самоуничтожение, если игра остановилась!
         if (GameController.Instance.AreGameIsStarting() == false)
@@ -71,17 +53,7 @@ public class Enemy : Enemies
             Destroy(gameObject);
         }
 
-
-
     }
-
-
-
-
-
-
-
-
 
     void NextWaypoint()
     {
@@ -92,25 +64,18 @@ public class Enemy : Enemies
             _enemyBody.transform.localRotation = _quaternionRotation;
         }
 
-
         waypointIndex++;
         if (waypointIndex >= waypoints.childCount)
         {
-
             // событие при котором враг доходит до финиша и забирает жизнь игрока
             var eventData = new EnemyWasMovedToFinish() { Enemy = EnemyType.EnemyCat };
             EventAggregator.Post(this, eventData);
-
 
             Destroy(gameObject);
             return;
         }
 
-
-
         waypoint = waypoints.GetChild(waypointIndex);
-
-
 
     }
 
@@ -137,13 +102,8 @@ public class Enemy : Enemies
             var rndSfxCatDiedEffects = arrSfxCatDiedEffects[rand.Next(arrSfxCatDiedEffects.Length)];
 
             AudioManager.PlaySFX(rndSfxCatDiedEffects);
-            // =============
-            // =============
 
-            // _enemyCatDiedEffect
-            //GameObject effectGameObjectToDestroy = Instantiate(_enemyCatDiedEffect, transform.position, transform.rotation);
             GameObject effectGameObjectToDestroy = Instantiate(_enemyCatDiedEffect, transform.position, transform.rotation, _forTrashContainer.transform);
-            //StartCoroutine(DestroyEffectObject(effectGameObjectToDestroy));
 
             // убили обьект
             Destroy(gameObject);

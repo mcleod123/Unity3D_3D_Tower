@@ -5,37 +5,31 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
 
-
     private Camera camera;
     private TowerPlace currentTowerPlace;
 
     private string _towerPlaceTagName = "TowerPlace";
-    private string _towerTagName = "TowerRoof";
 
-
-    // Start is called before the first frame update
     void Start()
     {
         camera = GetComponent<Camera>();
     }
 
 
-    // Update is called once per frame
     void Update()
     {
-
+        // если игра уже идет, то имеем возможность строить башни
         if (GameController.Instance.AreGameIsStarting() == true)
         {
             BuildTheTowers();
         }
-
-
     }
 
 
     private void BuildTheTowers()
     {
 
+        // надо определить, куда именно мы тыкнули, чтобы поставить там башню
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -88,41 +82,6 @@ public class CameraScript : MonoBehaviour
         }
 
 
-
-        if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == _towerTagName)
-        {
-            // ===========
-            // Right Click
-            // ===========
-
-            //Debug.Log("Нажали по башне утке, чтобы ее улучшить");
-            //Debug.Log(hit.collider.gameObject.tag.ToString());
-
-                bool isMouseRightDown = Input.GetMouseButtonDown(1);
-                bool isMouseRightUp = Input.GetMouseButtonUp(1);
-
-            Tower tower = hit.collider.gameObject.GetComponent<Tower>();
-
-            if (isMouseRightDown || isMouseRightUp)
-            {
-                    if (isMouseRightDown)
-                    {
-                    // tower.OnMouseRightDown();
-                    
-                    }
-                    else if (isMouseRightUp)
-                    {
-                        Debug.Log("Нажали по башне утке, чтобы ее улучшить");
-                    Destroy(tower);
-                    // tower.OnMouseRightUp();
-                }
-            }
-
-            // ===========       
-        }
-
-
     }
-
 
 }
