@@ -14,17 +14,6 @@ public class GameController : MonoBehaviour
     private bool GameIsStarting = false; 
 
 
-    void Update()
-    {
-
-        // Выход из игры по нажатию кнопки Escape или ее аналога на андроиде
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            QuitGame();
-        }
-
-    }
-
     private void Awake()
     {
         if (_intance != null)
@@ -86,14 +75,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void QuitGame()
-    {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit();
-        #endif
-    }
 
 
 

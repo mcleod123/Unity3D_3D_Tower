@@ -51,8 +51,8 @@ public class SettingsController : MonoBehaviour
     public const int EnemyPenguineDeathCost = 50;
     public const float PenguineSpeed = 0.3f;
     public const float EnemyPenguineMaxLife = 500f;
-    public const float EnemyPenguineSpawnTime = 25f;
-    public const float EnemyPenguineItemsInterval = 25f;
+    public const float EnemyPenguineSpawnTime = 15f;
+    public const float EnemyPenguineItemsInterval = 20f;
 
 
     // Строковые значения
